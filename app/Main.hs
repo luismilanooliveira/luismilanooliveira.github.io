@@ -30,17 +30,17 @@ main =
         >>= loadAndApplyTemplate "templates/default.html" postContext
         >>= relativizeUrls
 
-    create ["archive.html"] $ do
+    create ["posts.html"] $ do
       route idRoute
       compile $ do
         posts <- recentFirst =<< loadAll "posts/*"
         let archiveContext =
               listField "posts" postContext (return posts) `mappend`
-              constField "title" "Archives" `mappend`
+              constField "title" "Posts" `mappend`
               defaultContext
 
         makeItem ""
-          >>= loadAndApplyTemplate "templates/archive.html" archiveContext
+          >>= loadAndApplyTemplate "templates/posts.html" archiveContext
           >>= loadAndApplyTemplate "templates/default.html" archiveContext
           >>= relativizeUrls
 
@@ -85,9 +85,9 @@ postContext =
 feedConfiguration :: FeedConfiguration
 feedConfiguration =
   FeedConfiguration
-    { feedTitle = "Dr. Hakyll's Blog"
-    , feedDescription = "Dr. Hakyll's blog"
-    , feedAuthorName = "Dr. Hakyll"
-    , feedAuthorEmail = "dr-hakyll@dr-hakyll.com"
+    { feedTitle = "blog = traverse print thoughts"
+    , feedDescription = "Luismo's blog"
+    , feedAuthorName = "Luis FMO"
+    , feedAuthorEmail = "luismilanooliveira at gmail dot com"
     , feedRoot = ""
     }
